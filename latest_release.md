@@ -1,8 +1,13 @@
 # Latest Release
-The latest release of the BCS as a whole is
+
+> `BCS 0.1.0-pilot`
 
  * [`brewdrivers v0.4.2`](https://github.com/NavasotaBrewing/brewdrivers/releases/tag/0.4.2)
  * [`brewkit v0.1.0-pilot`](https://github.com/NavasotaBrewing/brewkit/releases/tag/v0.1.0-pilot)
+
+
+--------------
+
 
 As a warning, installing dependencies and compiling will take a while, especially on a slow connection. You should set aside some time for this.
 
