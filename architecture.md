@@ -14,6 +14,21 @@ The main features of the Navasota Brewing layout are
 3. 1 or more "RTUs" (remote terminal units), which use the Modbus RS-485 protocol to control...
 4. device clusters.
 
+# Code Maps
+See each repository for more documentation.
+
+| Repository | Description |
+| ---------- | ----------- |
+| [`NavasotaBrewing/readme`](https://github.com/NavasotaBrewing/readme) | where you are now. Just documentation. |
+| [`NavasotaBrewing/brewdrivers`](https://github.com/NavasotaBrewing/brewdrivers) | a library (Rust crate) of interfaces and drivers for interacting with hardware. Is not used directly by the brewer, but can be used for scripting if necessary. This is the brain of the entire system. |
+| [`NavasotaBrewing/cli`](https://github.com/NavasotaBrewing/cli) | A CLI built on top of `brewdrivers`. This lets you directly control devices from each RTU. Every RTU will have it installed, so you only need to connect (SSH/Physical) to the RTU and run the CLI. |
+| [`NavasotaBrewing/network`](https://github.com/NavasotaBrewing/network) | another Rust crate containing web servers to run on both the RTUs and master station. This handles all communication between any wireless/network device in the system. If it's not talking through a serial wire, it's this packages job. |
+| [`NavasotaBrewing/brewkit`](https://github.com/NavasotaBrewing/brewkit) | A VueJS front end; the primary tool the brewer uses to control the BCS. It runs somewhere (local/AWS/wherever) and communicates with the master station. |
+| [`NavasotaBrewing/docker`](https://github.com/NavasotaBrewing/docker) | Hosts our docker configuration files. There's not much there right now. |
+
+# BCS Layout
+This section describes each element of the BCS at a high level.
+
 ## Brewkit
 Brewers interact directly with [`NavasotaBrewing/brewkit`](https://github.com/NavasotaBrewing/brewkit), which is a VueJS front end. It is served offsite through Amazon EC2 so that it's accessible anywhere. 
 
@@ -26,10 +41,10 @@ The master API, served from the "master station", is the point of contact betwee
 
 The master API accepts the configuration mentioned above from `brewkit`, which it then sends to every RTU. The RTUs determine the device state changes that need to be made, or update the sent configuration with device state.
 
-This API is part of [`NavasotaBrewing/brewdrivers`](https://github.com/NavasotaBrewing/brewdrivers).
+This API is part of [`NavasotaBrewing/network`](https://github.com/NavasotaBrewing/network).
 
 ## RTUs
-RTUs are discrete computers (Raspberry Pis, in our case) that command a single device cluster. They are primarily operated through HTTP requests sent by the master API from the master station. However, devices can be controlled through a CLI provided by the RTU for manual override or emergency purposes.
+RTUs are discrete computers (Raspberry Pis, in our case) that command a device cluster. They are primarily operated through HTTP requests sent by the master API from the master station. However, devices can be controlled through a CLI provided directly by the RTU for manual override or emergency purposes.
 
 The RTU communicates with devices through a Modbus RS485 network
 
@@ -37,7 +52,7 @@ The RTU communicates with devices through a Modbus RS485 network
 
 Here, the "master" is the RTU and the "slaves" are each device in the cluster.
 
-Per the limitations of the Modbus protocol, a cluster can have 0-255 devices. This is not a severe limitation, as device clusters typically consist of only 2-15 devices, depending on scale.
+Per the limitations of the Modbus protocol, a cluster can have 0-247 devices. This is not a severe limitation, as device clusters typically consist of only 2-15 devices, depending on scale.
 
 Clusters are meant to be small. Because the RTU has to be physically connected to the devices, it makes sense to cluster devices depending on proximity.
 
