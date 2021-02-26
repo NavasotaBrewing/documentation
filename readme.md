@@ -10,6 +10,12 @@ As we scale up NBC, we need greater control and automation over the brewing hard
 
 There are several software packages under the `NavasotaBrewing` account that make up the BCS. Each package contains its own specific documentation.
 
+### Architecture
+See the [architecture page](architecture.md) for information about the layout of this project.
+
+### Hardware
+See the [hardware](hardware/readme.md) pages for information about the hardware we use.
+
 ## Versioning and Releases
 Each package has it's own version, and versions will not line up between packages (eg. `network v0.4.1` and `cli v1.1.0` are meant to be used together). 
 
