@@ -1,3 +1,6 @@
+Warning: We've changed the architecture a bit so this information is a little outdated. Stay tuned for updated information.
+<!-- TODO: Update this document -->
+
 # Architecture
 
 This document is a high level overview of the architecture of both the software and hardware used by the Navasota Brewing Company in our "Brewery Control System". It describes how the hardware is laid out, and how the software operates.
