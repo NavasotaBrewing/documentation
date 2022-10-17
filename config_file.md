@@ -1,4 +1,7 @@
 # RTU Configuration File
+
+Note: this is current for `CLI 4.0.0` and `brewdrivers 0.12.0`
+
 Every RTU requires a configuration file to tell the various systems what hardware is connected, and where it's connected. You should be mindful of
 things like controller addresses and device addresses when designing an RTU. 
 
