@@ -30,15 +30,15 @@ Note: if you want to have no devices, leave the list empty as above, don't omit 
 
 ```yaml
 devices:
-- driver: CN7500              # Driver (Must exactly match one of the Drivers provided by the iris package)
-  port: /dev/ttyUSB0          # Serial port to use for this device
-  name: Omega1                # Device name, for display purposes
-  id: omega1                  # Device ID, cannot contain whitespace, must be unique among all devices (including on other RTUs)
-  state: Off                  # Value field, just provide a default
-  addr: 0                     # Device address (ex. relay number. not used for CN7500, leave it as 0)
-  controller_addr: 22         # Controller address (decimal, not hex)
-  pv: 0.0                     # Value field, just provide a default
-  sv: 0.0                     # Value field, just provide a default
+- id: omega1              # Device ID, cannot contain whitespace, must be unique among all devices (including on other RTUs)
+  name: Themometer 1      # Device name, for display purposes
+  port: /dev/ttyUSB0      # Serial port to use for this device
+  addr: 0                 # Device address (ex. relay number. not used for CN7500, leave it as 0)
+  controller: CN7500      # What type of controller to use (Must exactly match one of the Controllers provided by the iris package)
+  controller_addr: 22     # Controller address (decimal, not hex)
+  state: Off              # Value field, just provide a default
+  pv: 0.0                 # Value field, just provide a default
+  sv: 0.0                 # Value field, just provide a default
 ```
 
 ## Full Config File
@@ -52,49 +52,41 @@ name: Testing RTU
 id: testing-rtu
 ip_addr: 0.0.0.0
 devices:
-- driver: CN7500
+- id: omega1
+  name: Themometer 1
   port: /dev/ttyUSB0
-  name: Omega1
-  id: omega1
-  state: Off
   addr: 0
+  controller: CN7500
   controller_addr: 22
+  state: Off
   pv: 75.8
   sv: 132.0
-- driver: STR1
+- id: pump
+  name: Main Pump
   port: /dev/ttyUSB0
-  name: Pump
-  id: pump
-  state: Off
   addr: 0
+  controller: STR1
   controller_addr: 254
-  pv: null
-  sv: null
-- driver: STR1
-  port: /dev/ttyUSB0
+  state: Off
+- id: sparge
   name: Sparge Valve
-  id: sparge-valve
-  state: Off
+  port: /dev/ttyUSB0
   addr: 1
+  controller: STR1
   controller_addr: 254
-  pv: null
-  sv: null
-- driver: STR1
-  port: /dev/ttyUSB0
+  state: Off
+- id: mash
   name: Mash Valve
-  id: mash-valve
-  state: Off
-  addr: 2
-  controller_addr: 254
-  pv: null
-  sv: null
-- driver: Waveshare
   port: /dev/ttyUSB0
-  name: Waveshare 0
-  id: ws0
+  addr: 2
+  controller: STR1
+  controller_addr: 254
   state: Off
+- id: waveshare
+  name: Waveshare Relay
+  port: /dev/ttyUSB0
   addr: 0
-  controller_addr: 3
-  pv: null
-  sv: null
+  controller: Waveshare
+  controller_addr: 2
+  state: Off
 ```
