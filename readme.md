@@ -30,7 +30,7 @@ This repository contains documentation for everything that doesn't fit neatly in
 
  * [Release instructions](https://github.com/NavasotaBrewing/readme/releases/)
  * [Software architecture overview](architecture.md)
- * [Hardware specifications](hardware/index.md)
+ * [Hardware specifications](hardware/readme.md)
  * Setup guides
  * Brewing recipes
  * and more...
