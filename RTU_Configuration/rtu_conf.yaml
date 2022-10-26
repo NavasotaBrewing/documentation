@@ -1,0 +1,102 @@
+# The RTUs Name
+# This can be any string
+# Constraints:
+#   * Must not be empty
+name: Testing RTU
+
+# The RTUs id
+# I would recommend the "slug" version of the RTU name.
+# Constraints:
+#   * Must be unique among all RTUs
+#   * Must not contain whitespace
+#   * Must not be empty
+id: testing-rtu
+
+# The RTUs IPv4 address
+# RTUs should be configured with a static IP (without DHCP)
+# Constraints:
+#   * Must not be empty
+ip_addr: 0.0.0.0
+
+# The devices list
+# technically this can be empty but then the RTU is not useful
+# Constraints:
+#   * Must be a list
+devices:
+
+  # Device ID
+  # Constraints:
+  #   * Must be unique among all devices *and* all RTUs, ie. not device
+  #     in the system can have the same ID
+  #   * Must not contain whitespace
+  #   * Must not be empty
+- id: omega1
+
+  # Device Name
+  # Constraints:
+  #   * Must not be empty
+  name: Themometer 1
+
+  # Device Port
+  # Constraints:
+  #   * Must be a valid and existing serial port on the RTU
+  #   * Must not be empty
+  port: /dev/ttyUSB0
+
+  # Device Address
+  # This is the address of the specific device on the controller,
+  # not the controller address. For example, if a relay board has 16 relays,
+  # this specifies which relay this device sits on.
+  # Constraints:
+  #   * Must not be empty (even if not used, leave as 0)
+  #   * Must be a parsable u8 (0-255)
+  addr: 0
+
+  # The Controller type
+  # This is the type of controller that the device runs on.
+  # Constraints:
+  #   * Must not be empty
+  #   * Must *exactly* match a Controller variant provided by `brewdrivers`
+  # Values (there may be more): CN7500 | STR1 | Waveshare
+  # See here for full list: https://docs.rs/brewdrivers/latest/brewdrivers/controllers/enum.Controller.html
+  controller: CN7500
+
+  # Controller address
+  # This is the RS-485/Modbus address that the device runs on.
+  # Constraints:
+  #   * Must not be empty
+  #   * Must be a parsable u8 (0-255)
+  controller_addr: 22
+
+  # Device State
+  # This is the state of the device, and you should provide a default for typing reasons.
+  # Each type of controller has an associated state type. For instance, Relay boards can be On|Off,
+  # or stepper relays can be 0-255. Just provide a default here.
+  # Constraints:
+  #   * Must not be empty
+  #   * Must exactly match one of the states provided in `brewdrivers::AnyState`
+  # See here for full list of states: https://docs.rs/brewdrivers/latest/brewdrivers/controllers/states/enum.AnyState.html
+  state: Off
+
+  # Device PV (if applicable)
+  # This is not required, but will be created when the RTU is updated.
+  # I will leave it here for completeness
+  pv: 75.8
+
+  # Device SV
+  # Same as above
+  sv: 132.0
+
+  # This is another device without the comments for brevity
+- id: pump
+  name: Pump
+  port: /dev/ttyUSB0
+  addr: 2
+  controller: STR1
+  controller_addr: 254
+  state: Off
+  # These are not necessary in this case
+  pv: 75.8
+  # These are not necessary in this case
+  sv: 132.0
+
