@@ -4,7 +4,7 @@ The [Navasota Brewing Company](https://navasotabrewing.com) is a brewery based i
 
 This is the entry point for all the documentation belonging to the Navasota Brewing Company (NBC). All software is maintained under the `NavasotaBrewing` github account.
 
-# The Brewery Control System
+# About the Brewery Control System
 As we scale up NBC, we need greater control and automation over the brewing hardware. The software packages here, the "brewery control system" or "BCS", are our best effort to do just that.
 The BCS is a distributed system of RTUs, or "remote terminal units", that control device clusters. Examples of these devices are valves, pumps, thermometers, heaters, etc. Every RTU maintains 1 device cluster,
 and there can be many devices in a cluster. RTUs are designed to be modular; you can add or remove devices as necessary depending on the physical setup or needs of the brew.
@@ -32,7 +32,7 @@ This repository contains documentation for everything that doesn't fit neatly in
  * [Release instructions](https://github.com/NavasotaBrewing/documentation/releases/)
  * [Software architecture overview](architecture.md)
  * [Hardware specifications](hardware/readme.md)
- * Setup guides
- * Brewing recipes
+ * Setup guides (coming soon...)
+ * Brewing recipes (coming soon...)
  * and more...
 

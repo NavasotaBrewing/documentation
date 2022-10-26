@@ -9,7 +9,7 @@ This document is a high level overview of the architecture of both the software 
 This shows the physical layout of the BCS.
 
 1. A "master station". This acts at the "master" in the master/slave paradigm along with the RTUs. It is the high arbiter of the entire system. It will host the web interface server, which communicates with the RTUs through HTTP.
-   
+
 2. Multiple RTUs (remote terminal units). RTUs can be any machine that can connect to the network and communicate through serial ports. We use the Raspberry Pi 3B+ because it's cheap and effective. These are embedded within the brewing hardware, physically connected to devices. They are on the same network as the master station, and they are controlled by it. Each RTU is sensibly placed within the building to control nearby devices.
 
 3. Device clusters. Devices are pieces of hardware that are controlled by a controller. These controllers are what are connected to the RTU computer. A controller may host 1 or more devices. For instance, a PID controller may host a thermometer device, while a relay board controller may host 8 or 16 relay controlled devices.
@@ -35,15 +35,14 @@ See the [hardware pages](hardware/readme.md) for guides on each type of device.
 
 
 # The Software
-WARNING: this image is currently outdated. We're working on updating it.
-
-![software_architecture.png](images/nbc_software_architecture.png)
-
 The software packages have a similar layout to the hardware.
 
 1. [`NavasotaBrewing/starscourge`](https://github.com/NavasotaBrewing/starscourge) at the top level is the web interface that the brewer uses. It runs on the master station mentioned above, and communicates with the RTUs through HTTP.
-3. [`NavasotaBrewing/iris`](https://github.com/NavasotaBrewing/iris) The RTU API, which is the other half of the HTTP coin. The RTU API (`iris`) and master station (`starscourge`) are meant to speak with one another. The RTU API runs on each RTU (3 are pictured here, there could be more/less).
-4. [`NavasotaBrewing/cli`](https://github.com/NavasotaBrewing/cli) provides a CLI that also runs on the RTUs. This is for manual intervention in case of emergencies or if the network breaks. It will give you full control over the devices, directly from the RTU. This can be accomplished through an SSH connections from the master station, or direct USB/RS-485 connection if the network is down.
+2. [`NavasotaBrewing/iris`](https://github.com/NavasotaBrewing/iris) The RTU API, which is the other half of the HTTP coin. The RTU API (`iris`) and master station (`starscourge`) are meant to speak with one another. The RTU API runs on each RTU.
+3. [`NavasotaBrewing/cli`](https://github.com/NavasotaBrewing/cli) provides a CLI that also runs on the RTUs. This is for manual intervention in case of emergencies or if the network breaks. It will give you full control over the devices, directly from the RTU. This can be accomplished through an SSH connections from the master station, or direct USB/RS-485 connection if the network is down.
+4. [`NavasotaBrewing/brewdrivers`](https://github.com/NavasotaBrewing/brewdrivers) A library of drivers providing control over the hardware. This is used by the above packages, but does not need any setup on the RTU.
+
+All software packages run on the same global configuration file, [specified here](RTU_Configuration/configuration.md).
 
 ## Full Repository List
 Here's a list of all the repositories in the organization. The ones named above are the core packages that make the beer brew.
