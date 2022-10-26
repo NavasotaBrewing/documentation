@@ -1,5 +1,7 @@
 # CN7500 Relay Board
 
+This guide is incomplete. We're working on updating it.
+
 # Links
 
 * [Hardware guide (pdf)](cn7500_hardware_guide.pdf)
