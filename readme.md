@@ -29,6 +29,7 @@ See the [hardware](hardware/readme.md) pages for information about the hardware 
 This repository contains documentation for everything that doesn't fit neatly inside one of those repos. This includes, but is not limited to:
 
  * [Configuration Instructions](RTU_Configuration/configuration.md)
+ * [Build scripts](build_scripts/readme.md)
  * [Release instructions](https://github.com/NavasotaBrewing/documentation/releases/)
  * [Software architecture overview](architecture.md)
  * [Hardware specifications](hardware/readme.md)
