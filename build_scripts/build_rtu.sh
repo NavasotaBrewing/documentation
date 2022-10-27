@@ -10,30 +10,47 @@ CONF_PATH="$CONF_DIR$CONF_FILE"
 # The user will be prompted to edit this later
 CONF_URL="https://raw.githubusercontent.com/NavasotaBrewing/documentation/master/RTU_Configuration/rtu_conf.yaml"
 # Dependency list
-DEPENDENCIES="vim libudev-dev openssl"
+DEPENDENCIES="libudev-dev openssl"
 
-if [ "$EUID" -ne 0 ]
-  then echo "Please run as root"
-  exit
-fi
+echo "This script is about to do the following things to your system:"
+echo "  * create /etc/NavasotaBrewing/rtu_conf.yaml if it doesn't already exist"
+echo "  * install the following dependecies:"
+echo "      $DEPENDENCIES"
+echo "  * Install cargo and rustup (if not already present)"
+echo "  * Set default rust toolchain to nightly rust"
+echo "  * Install the following BCS software:"
+echo "      * NBC_cli - the brewery system command line interface"
+echo "      * nbc_iris - the RTU server"
+echo
+echo "Are you sure you want to continue?"
+select yn in "Yes" "No"; do
+  case $yn in
+    Yes ) break;;
+    No ) exit;;
+  esac
+done
+
+echo
+echo
+
 
 function main {
     echo "=== Setting up RTU ==="
     # check_dependencies
     # configure_serial_port
-    # create_configuration
-    install_bcs
+    create_configuration
+    # install_bcs
 }
 
 # Dependencies =====================================================
 function check_dependencies {
     # Configure system dependencies -------------
     echo
-    echo " === installing dependencies ==="
+    echo "=== installing dependencies ==="
     sudo apt-get update
     sudo apt-get install -y $DEPENDENCIES
 
-    # Configure Rust ----------------------------
+    # Configure rustup/cargo ----------------------------
     # If cargo is not installed, attempt to install it
     # This pipes to sh, which is usually dangerous but I trust the Rust Foundation
     # Hopefully it returns here fine
@@ -55,7 +72,9 @@ function check_dependencies {
 
 # Configuration Stuff ==============================================
 function create_configuration {
-
+    echo
+    echo "=== creating RTU configuration ==="
+    
     # If the configuration directory doesn't exist, create it
     if [ ! -d $CONF_DIR ]; then
         sudo mkdir $CONF_DIR
@@ -74,11 +93,18 @@ function create_configuration {
 
 # Install BCS Software =============================================
 function install_bcs {
+    echo
+    echo "=== installing BCS ==="
+
     # CLI --------------------------
+    echo "  = Installing CLI =  "
     cargo install NBC_cli
+    echo "done."
 
     # Iris
+    echo "  = Installing Iris =  "
     cargo install nbc_iris
+    echo "done."
 }
 
 main
