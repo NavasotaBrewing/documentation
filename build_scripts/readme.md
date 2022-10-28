@@ -35,11 +35,12 @@ The script will attempt to perform the following tasks:
 * Create configuration files
     * Create `/etc/NavasotaBrewing`
     * Create `/etc/NavasotaBrewing/rtu_conf.yaml` and populate with [default config file](../RTU_Configuration/rtu_conf.yaml)
+    * Open the config file in an editor (`nano`) for you to manually write. You can edit this later.
 * Install all BCS software
     * `cargo install NBC_cli`
     * `cargo install nbc_iris`
 * Set startup programs
-    * `nbc_iris`
+    * This will open `/etc/rc.local` in `nano` so you can write any startup scripts you want
 
 This should all happen automatically. If there are any errors, please report them to Luke so he can fix them.
 
