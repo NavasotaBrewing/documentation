@@ -6,7 +6,9 @@ If you have `curl` installed, run this command and replace `[BUILD_SCRIPT_NAME]`
 Note: piping to shell is normally bad practice, but I wrote these scripts and it will likely be me running them. I sometimes trust my former self.
 
 ```
-curl https://raw.githubusercontent.com/NavasotaBrewing/documentation/master/build_scripts/[BUILD_SCRIPT_NAME].sh | sh
+$ curl https://raw.githubusercontent.com/NavasotaBrewing/documentation/master/build_scripts/[BUILD_SCRIPT_NAME].sh > build_rtu.sh
+$ sudo chmod +x build_rtu.sh
+$ ./build_rtu.sh
 ```
 
 ## Index
