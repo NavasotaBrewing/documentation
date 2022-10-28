@@ -3,13 +3,16 @@
 # Configuration path
 CONF_DIR="/etc/NavasotaBrewing/"
 # Configuration file name
-CONF_FILE="rtu_conf.yml"
+CONF_FILE="rtu_conf.yaml"
 # Combined path and file name
 CONF_PATH="$CONF_DIR$CONF_FILE"
 # This url is the standard configuration file that will be cloned
 # The user will be prompted to edit this later
 CONF_URL="https://raw.githubusercontent.com/NavasotaBrewing/documentation/master/RTU_Configuration/rtu_conf.yaml"
+# This is the default discord webhook. it goes to my personal channel.
+# If you want to change this later, just edit ~/.wheres_my_pi on the RTU 
 DISCORD_WEBHOOK="https://discord.com/api/webhooks/620679845352833035/worbazhnG9IT6hZfmyZfntVwN07LhoEtzdagAIYJUHOdGO0jy58L7nuq9REKLVNIaNSC"
+# Startup commands will go in here
 STARTUP_FILE="/etc/rc.local"
 # Dependency list
 DEPENDENCIES="nano libudev-dev libssl-dev"
@@ -22,15 +25,17 @@ function main {
     
     install_cargo # and also rustup/rustc
 
-    set_nightly_rust    
+    # set_nightly_rust    
     
     create_configuration
     
-    install_wheres_my_pi
+    # install_wheres_my_pi
     
     install_bcs
     
     set_startup_actions
+
+    post_run_message
 }
 
 function start_message {
@@ -47,6 +52,19 @@ function start_message {
     echo "  * Create and populate /etc/rc.local file"
     
     confirm
+}
+
+function post_run_message {
+    echo 
+    echo "done."
+    echo
+    echo "You should restart your system."
+    echo "You now have access to the CLI through"
+    echo "  $ NBC_cli"
+    echo "and iris through"
+    echo "  $ nbc_iris"
+    echo
+    echo "Prost!"
 }
 
 function confirm {
@@ -107,18 +125,36 @@ function create_configuration {
     if [ -f $CONF_PATH ]; then
         echo "Configuration file already exists at $CONF_PATH"
         echo "I would check the configuration file and make sure it's set up how you want it."
+        echo -n "Note: your IP is "
+        hostname -I
     else
         echo "Creating configuration file ($CONF_PATH)"
         curl -sSfL $CONF_URL | sudo tee $CONF_PATH
-        sudo nano $CONF_PATH
+        echo
+        echo "You're about to edit $CONF_PATH"
+        echo "I've put the default configuration file (shown above) in there, so you can"
+        echo "follow the format. Just fill out the correct values and write out your devices."
+        echo
+        echo -n "Note: your IP is "
+        hostname -I
+        echo "And the USB serial ports in /dev/ I found are:"
+        ls /dev | grep ttyUSB
+        echo
+        echo "Select 1 to start the editor"
+        select yn in "start" "continue"; do
+            case $yn in
+                start ) sudo nano $CONF_PATH;;
+                continue ) break;;
+            esac
+        done
     fi
 
-    if [ ! -f ~/.wheres_my_pi ]; then
-        echo "Setting discord webhook in ~/.wheres_my_pi"
-        echo "If you want to change it, edit ~/.wheres_my_pi"
-        touch ~/.wheres_my_pi
-        echo $DISCORD_WEBHOOK > ~/.wheres_my_pi
-    fi
+    # if [ ! -f ~/.wheres_my_pi ]; then
+    #     echo "Setting discord webhook in ~/.wheres_my_pi"
+    #     echo "If you want to change it, edit ~/.wheres_my_pi"
+    #     touch ~/.wheres_my_pi
+    #     echo $DISCORD_WEBHOOK > ~/.wheres_my_pi
+    # fi
 }
 
 function install_bcs {
@@ -137,28 +173,22 @@ function install_bcs {
 }
 
 function set_startup_actions {
+    echo
     echo "=== Setting startup actions ==="
-    
-    if [ ! -f "$STARTUP_FILE" ]; then 
-        echo "No $STARTUP_FILE found, creating it..."
-        sudo touch $STARTUP_FILE
-        echo "Configuring iris to start on Pi startup"
-        echo 'nbc_iris &' | sudo tee -a $STARTUP_FILE
-        echo "\nwheres_my_pi &" | sudo tee -a $STARTUP_FILE
-        echo "done."
-    else
-        echo
-        echo "$STARTUP_FILE already exists. Would you like to edit it now?"
-        echo "I recommend configuring 'iris' and 'wheres_my_pi' to run at startup"
-        echo ""
-        select yn in "Yes" "No"; do
-            case $yn in
-                Yes ) sudo nano $STARTUP_FILE;;
-                No ) break;;
-            esac
-        done
-    fi
-
+    echo
+    echo "You're about to edit $STARTUP_FILE"
+    echo "Put the *fully qualified path* to any programs you want to start on boot"
+    echo "For example:"
+    echo "  $HOME/.cargo/bin/nbc_iris &"
+    echo "is the correct line to start iris"
+    echo
+    echo "Select 1 to start the editor"
+    select yn in "start" "continue"; do
+        case $yn in
+            start ) sudo nano $STARTUP_FILE;;
+            continue ) break;;
+        esac
+    done
 }
 
 main
