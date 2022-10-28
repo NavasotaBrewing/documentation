@@ -21,7 +21,7 @@ There's a few things that can't be automated. You'll need to
 Clone the build script with `cURL`, set permissions, and run it
 
 ```
-$ curl https://raw.githubusercontent.com/NavasotaBrewing/documentation/master/build_scripts/build_rtu.sh > build_rtu.sh
+$ curl -sSL https://raw.githubusercontent.com/NavasotaBrewing/documentation/master/build_scripts/build_rtu.sh > build_rtu.sh
 $ sudo chmod +x build_rtu.sh
 $ ./build_rtu.sh
 ```
