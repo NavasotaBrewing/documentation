@@ -1,3 +1,1 @@
-# Index
-
-* [RTU Setup](rtu.md)
+nothing here yet, we'll write some docs soon...

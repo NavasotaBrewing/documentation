@@ -9,9 +9,6 @@ CONF_PATH="$CONF_DIR$CONF_FILE"
 # This url is the standard configuration file that will be cloned
 # The user will be prompted to edit this later
 CONF_URL="https://raw.githubusercontent.com/NavasotaBrewing/documentation/master/RTU_Configuration/rtu_conf.yaml"
-# This is the default discord webhook. it goes to my personal channel.
-# If you want to change this later, just edit ~/.wheres_my_pi on the RTU 
-DISCORD_WEBHOOK="https://discord.com/api/webhooks/620679845352833035/worbazhnG9IT6hZfmyZfntVwN07LhoEtzdagAIYJUHOdGO0jy58L7nuq9REKLVNIaNSC"
 # Startup commands will go in here
 STARTUP_FILE="/etc/rc.local"
 # Dependency list
@@ -29,7 +26,7 @@ function main {
     
     create_configuration
     
-    # install_wheres_my_pi
+    install_wheres_my_pi
     
     install_bcs
     
@@ -148,13 +145,6 @@ function create_configuration {
             esac
         done
     fi
-
-    # if [ ! -f ~/.wheres_my_pi ]; then
-    #     echo "Setting discord webhook in ~/.wheres_my_pi"
-    #     echo "If you want to change it, edit ~/.wheres_my_pi"
-    #     touch ~/.wheres_my_pi
-    #     echo $DISCORD_WEBHOOK > ~/.wheres_my_pi
-    # fi
 }
 
 function install_bcs {

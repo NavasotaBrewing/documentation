@@ -1,6 +1,6 @@
 # RTU Configuration
 
-For BCS Version 2
+For BCS Version 2.1
 
 Every RTU requires at least one configuration file to tell the various systems what hardware is connected, and where it's connected. You should be mindful of things like controller addresses and device addresses when designing an RTU.
 
