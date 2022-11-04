@@ -73,6 +73,23 @@ devices:
     # See here for full list: https://docs.rs/brewdrivers/latest/brewdrivers/controllers/enum.Controller.html
     controller: CN7500
 
+    # The devices baudrate
+    # This must be whatever the controller is configured to
+    # Each controller sets their baudrate differently
+    # Constraints:
+    #   * Must not be empty
+    #   * Must be a baudrate that the device supports
+    baudrate: 19200
+
+    # The device timeout in ms
+    # This will increase the speed at which data is read from the device
+    # If you set it too low, communication will fail.
+    # I recommend at least 45.
+    # Constraints:
+    #   * Must not be empty
+    #   * Must not be below 16ms
+    timeout: 50
+
   # This is another device without the comments for brevity
 - id: pump
   name: Pump
@@ -81,3 +98,5 @@ devices:
     addr: 2
     controller: STR1
     controller_addr: 254
+    baudrate: 19200
+    timeout: 55
