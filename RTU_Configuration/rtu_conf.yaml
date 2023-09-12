@@ -18,6 +18,7 @@ id: testing-rtu
 #   * Must not be empty
 ip_addr: 0.0.0.0
 
+
 # The devices list
 # technically this can be empty but then the RTU is not useful
 # Constraints:
@@ -37,6 +38,19 @@ devices:
   #   * Must not be empty
   name: Themometer 1
 
+  # Number of times to retry a command if it fails.
+  # Note that this is retries, so 0 retries is still 1 initial try.
+  # Constraints:
+  #   * Must be a number in the range [0, 5]
+  command_retries: 1
+
+  # Delay (in ms) between each command try when command_retries
+  # is set > 0.
+  # Constraints:
+  #   * Must be an integer
+  #   * Must be greater than the device timeout
+  #   * Must be <= 2000
+  retry_delay: 150
 
   # Device Connection details
   # Constraints:
@@ -93,6 +107,8 @@ devices:
   # This is another device without the comments for brevity
 - id: pump
   name: Pump
+  command_retries: 1
+  retry_delay: 150
   conn:
     port: /dev/ttyUSB0
     addr: 2

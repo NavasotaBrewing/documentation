@@ -42,7 +42,7 @@ function start_message {
     echo "  * install the following dependecies:"
     echo "      $DEPENDENCIES"
     echo "  * Install cargo and rustup (if not already present)"
-    echo "  * Set default rust toolchain to nightly rust"
+    # echo "  * Set default rust toolchain to nightly rust"
     echo "  * Install the following BCS software:"
     echo "      * NBC_cli - the brewery system command line interface"
     echo "      * nbc_iris - the RTU server"

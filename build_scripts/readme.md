@@ -45,5 +45,6 @@ The script will attempt to perform the following tasks:
 This should all happen automatically. If there are any errors, please report them to Luke so he can fix them.
 
 ## Landing
-If the script runs successfully, you should be able to reboot the Pi and see the `iris` server running.
+If the script runs successfully, you should be able to reboot the Pi and see the `iris` server running with `ps aux | grep iris`.
 It should be able to recieve requests from the front end. From now on, the `iris` server should start whenever the Pi boots.
+
