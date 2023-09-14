@@ -4,7 +4,7 @@ This document is a high level overview of the architecture of both the software 
 
 # The Network/Hardware
 
-![architecture.png](images/nbc_network_architecture.png)
+![architecture.png](Images/nbc_network_architecture.png)
 
 This shows the physical layout of the BCS.
 
@@ -24,14 +24,14 @@ RTUs are generally enclosed in cases that we specifically design for each purpos
 
 RTUs need to be configured before use. Each RTU will have a configuration file that tells the software where on the RS-485 network the controllers live, and what devices are hosted by each controller. This config file should be written at RTU setup, and modified when the hardware configuration changes.
 
-See the [guides section](guides/readme.md) on setting up RTUs.
+See the [guides section](Setup%20Guides/readme.md) on setting up RTUs.
 
 ## 3. Device Clusters
 Device clusters are devices grouped by RTU. Because they almost always need to be physically connected, it makes sense to group device by proximity, not type or purpose.
 
 We try to stick to the Modbus RTU protocol for consistency, but we'll take what we can get. The STR1XX relay board, for example, just communicates through raw RS-485. A custom driver or interface is written for each type of device.
 
-See the [hardware pages](hardware/readme.md) for guides on each type of device.
+See the [hardware pages](Hardware/README.md) for guides on each type of device.
 
 
 # The Software
@@ -42,7 +42,7 @@ The software packages have a similar layout to the hardware.
 3. [`NavasotaBrewing/cli`](https://github.com/NavasotaBrewing/cli) provides a CLI that also runs on the RTUs. This is for manual intervention in case of emergencies or if the network breaks. It will give you full control over the devices, directly from the RTU. This can be accomplished through an SSH connections from the master station, or direct USB/RS-485 connection if the network is down.
 4. [`NavasotaBrewing/brewdrivers`](https://github.com/NavasotaBrewing/brewdrivers) A library of drivers providing control over the hardware. This is used by the above packages, but does not need any setup on the RTU.
 
-All software packages run on the same global configuration file, [specified here](RTU_Configuration/configuration.md).
+All software packages run on the same global configuration file, [specified here](Software/RTU%20Configuration/Configuration%20Files.md).
 
 ## Full Repository List
 Here's a list of all the repositories in the organization. The ones named above are the core packages that make the beer brew.

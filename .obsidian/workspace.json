@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "25b2a8f050874cfd",
+        "id": "de69936b8dfaca40",
         "type": "tabs",
         "children": [
           {
-            "id": "01861cb7dac49972",
+            "id": "46e91746b2f0aded",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "RTU_Configuration/configuration.md",
-                "mode": "preview",
-                "source": true
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -85,7 +81,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "RTU_Configuration/configuration.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +97,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "RTU_Configuration/configuration.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +118,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "RTU_Configuration/configuration.md"
-              }
+              "state": {}
             }
           }
         ],
@@ -147,19 +139,25 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1260d1ed0682f25b",
+  "active": "46e91746b2f0aded",
   "lastOpenFiles": [
+    "Setup Guides/rtu_setup_log.md",
+    "Software/RTU Configuration/Dependencies and Initial Setup.md",
+    "Software/RTU Configuration/RTU Management Quick Reference.md",
+    "Software/RTU Configuration/Configuration Files.md",
+    "Software/Build Scripts/README.md",
+    "README.md",
+    "Architecture.md",
+    "Setup Guides/readme.md",
+    "images/Untitled.md",
+    "Hardware/Wiring.md",
+    "Hardware/README.md",
+    "Software",
     "software",
-    "setup_guides/readme.md",
-    "build_scripts/readme.md",
-    "RTU_Configuration/configuration.md",
-    "readme.md",
     "setup_guides/Ground Up Setup Guide.md",
-    "setup_guides/rtu_setup_log.md",
-    "architecture.md",
     "Untitled.md",
     "rtu.md",
     "2022-10-31.md",
-    "images/str1160000h.jpg"
+    "Images/str1160000h.jpg"
   ]
 }

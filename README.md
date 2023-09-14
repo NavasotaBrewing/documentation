@@ -16,7 +16,7 @@ RTUs are designed to be modular: adding and removing devies is fairly easy. This
 
 ## Architecture
 
-See the [architecture page](architecture.md) for information about the physical and software layers of this project, and how everything communicates.
+See the [architecture page](Architecture.md) for information about the physical and software layers of this project, and how everything communicates.
 
 ## Versioning and Releases
 
@@ -30,18 +30,18 @@ See the [releases page](https://github.com/NavasotaBrewing/documentation/release
 
 ## Hardware
 
-See the [hardware](hardware/readme.md) pages for information about the hardware we use. It contains things like reference manuals and helpful information about the hardware that we've learned over the years.
+See the [hardware](Hardware/README.md) pages for information about the hardware we use. It contains things like reference manuals and helpful information about the hardware that we've learned over the years.
 
 
 # About this repository
 
 This repository contains documentation for everything that doesn't fit neatly inside one of those repos. This includes, but is not limited to:
 
- * [Configuration Instructions](RTU_Configuration/configuration.md)
- * [Build scripts](build_scripts/readme.md)
+ * [Configuration Instructions](Software/RTU%20Configuration/Configuration%20Files.md)
+ * [Build scripts](Software/Build%20Scripts/README.md)
  * [Release instructions](https://github.com/NavasotaBrewing/documentation/releases/)
- * [Software architecture overview](architecture.md)
- * [Hardware specifications](hardware/readme.md)
+ * [Software architecture overview](Architecture.md)
+ * [Hardware specifications](Hardware/README.md)
  * Setup guides (coming soon...)
  * Brewing recipes (coming soon...)
  * and more...

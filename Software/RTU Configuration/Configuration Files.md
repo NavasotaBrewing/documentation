@@ -1,6 +1,3 @@
-
-This page documents the RTU configuration file, not how to setup an RTU. For an RTU setup guide, see [readme](../setup_guides/readme.md).
-
 # RTU Configuration
 
 Every RTU requires a configuration file to tell the various systems what hardware is connected, and how to connect to it. You should be mindful of things like controller addresses and device addresses when designing an RTU.

@@ -8,7 +8,7 @@ CONF_FILE="rtu_conf.yaml"
 CONF_PATH="$CONF_DIR$CONF_FILE"
 # This url is the standard configuration file that will be cloned
 # The user will be prompted to edit this later
-CONF_URL="https://raw.githubusercontent.com/NavasotaBrewing/documentation/master/RTU_Configuration/rtu_conf.yaml"
+CONF_URL="https://raw.githubusercontent.com/NavasotaBrewing/documentation/master/Software/RTU%20Configuration/rtu_conf.yaml"
 # Startup commands will go in here
 STARTUP_FILE="/etc/rc.local"
 # Dependency list
