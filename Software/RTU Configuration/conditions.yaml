@@ -1,0 +1,77 @@
+# This is the conditions.yaml file.
+# Conditions are boolean expressions using the hardware. We define conditions to be used in rules.
+# A condition determines if a rule triggers or not. Conditions on their own do not do anything.
+#
+# See the examples below.
+
+
+# All conditions need to be kept in a collection called 'conditions'
+conditions:
+
+  # An ID for the condition. This follows the normal ID rules (no whitespace, unique among it's siblings)
+  # I would make the ID similar to the name for ease of use.
+  - id: my-condition
+    
+    # A display name for the condition. Has no functional effect, but will be reported in logging events, and helps
+    # you keep track of conditions.
+    name: My Condition
+
+    # The condition operator. This defines how the condition is evaluated.
+    # There are several operators. They are listed in the `ConditionKind`
+    # https://github.com/NavasotaBrewing/brewdrivers/blob/dev/src/model/conditions/mod.rs
+    # These must match exactly, case sensitive.
+    # The current conditions are: RelayStateIs, PVIsAtLeast, PVIsAround, PVMeetsSV
+    # More may be added in the future
+    condition: RelayStateIs
+
+    # The id of the device that should be used to evaluate this condition.
+    # For example, if we want the condition to trigger when relay0 turns on,
+    # then we'll provide the id for relay0 here
+    # 
+    # This must match exactly the id of the device that you defined in the rtu_conf.yaml file
+    device_id: relay0
+
+    # A state object. This uses the same structure as the state object in the rtu_conf.yaml file,
+    # if you specified that.
+    #
+    # This is the target state. The condition will evaluate to true if the actual state of the device
+    # matches the state you define here. For this example, the condition would trigger if relay0 turns on.
+    # 
+    # The pv and sv fields are optional in this case sense we're operating on a relay, but I put them 
+    # there as an example. If we were using a condition like PVIsAtLeast, we would define the target PV
+    # under the pv field here in the target state
+    state:
+      relay_state: On
+      pv: 105.3
+      sv: 173.0
+
+
+    # Here's another example of a condition, this time using PVIsAround
+  - id: omega1-meets-target
+    name: Omega1 Meets Target Temp
+    condition: PVIsAround
+    # Operating on the omega1 device
+    device_id: omega1
+    # Define the target state at 100.0 degrees
+    state:
+      pv: 100.0
+    # we can also define margins. This condition will trigger if the PV
+    # is in the range 98.0 - 110.0. This is useful in case the PV suddenly jumps
+    # from below to above the target quickly.
+    #
+    # You can omit these and defaults will take over. Defaults are found in https://github.com/NavasotaBrewing/brewdrivers/blob/dev/src/defaults.rs
+    margin_below: 2.0
+    margin_above: 10.0
+
+
+    # Here's another rule that will trigger when this PID's pv meets it's sv
+    # Note that we don't have to define any state here, because the PID knows it's
+    # own setpoint.
+    #
+    # As an example, we could use this condition in a rule that closes a valve when
+    # the pv meets the sv, or something like that.
+  - id: omega1-meets-setpoint
+    name: Omega1 Meets Setpoint Temp
+    condition: PVMeetsSV
+    device_id: omega1
+

@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "de69936b8dfaca40",
+        "id": "54a672434d28606a",
         "type": "tabs",
         "children": [
           {
-            "id": "46e91746b2f0aded",
+            "id": "c95185a9a70c326c",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -58,6 +58,14 @@
             "type": "leaf",
             "state": {
               "type": "starred",
+              "state": {}
+            }
+          },
+          {
+            "id": "d688aeb677dcafd7",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
               "state": {}
             }
           }
@@ -139,8 +147,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "46e91746b2f0aded",
+  "active": "1260d1ed0682f25b",
   "lastOpenFiles": [
+    "Brewdrivers changes.md",
     "Setup Guides/rtu_setup_log.md",
     "Software/RTU Configuration/Dependencies and Initial Setup.md",
     "Software/RTU Configuration/RTU Management Quick Reference.md",
@@ -155,7 +164,6 @@
     "Software",
     "software",
     "setup_guides/Ground Up Setup Guide.md",
-    "Untitled.md",
     "rtu.md",
     "2022-10-31.md",
     "Images/str1160000h.jpg"
